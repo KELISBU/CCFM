@@ -180,13 +180,7 @@ python scripts/run_adv_simulation.py \
 | **`--hcs_mode`** | **HCS event-selection mode: `once` (at reset) or `periodic`** |
 | **`--hcs_freq`** | **HCS re-selection frequency (steps) when `--hcs_mode=periodic`** |
 
-### Outputs / Metrics
 
-Simulation logs per-scene metrics (see
-[`tbsim/evaluation/env_builders.py`](tbsim/evaluation/env_builders.py)),
-including: ego collision rate, collision region (FRONT/REAR/SIDE), ego and
-adversary off-road rates, collision relative speed, collision relative heading,
-and collision type-match.
 
 ### Visualization
 
