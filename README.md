@@ -28,7 +28,7 @@ Two components work together:
   agent's trajectory is projected onto a set of hard collision constraints
   (contact `cnt`, relative heading `hdg`, severity `svt`), enabled with
   `--ccfm`.
-- **HCS** — *Hard-Constraint Selection*. Picks **which** agent becomes the
+- **HCS** — *Heuristic Collision Selector*. Picks **which** agent becomes the
   adversary and **which** collision type to target, and re-selects it
   periodically during the rollout (`--hcs_mode`, `--hcs_freq`).
 
