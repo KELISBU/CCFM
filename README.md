@@ -142,8 +142,8 @@ python scripts/run_adv_simulation.py \
 | `--agent_eval_class` | Reactive agent model — `FM` (flow matching for the unconstrained baseline) |
 | `--ckpt_yaml` | Checkpoint config (`evaluation/CCFM.yaml`) |
 | `--scene_select_mode` | Scene subset to evaluate (e.g. `collision_all`) |
-| `--sim-steps` | Simulation length in steps (default `100`; use `200` for the 200s run) |
-| `--split_dataset` | Split scenes across the run |
+| `--sim-steps` | Simulation length in steps (default `100`; use `200` for the 200 step run) |
+| `--split_dataset` | Split scenes into 80 step windows |
 | **`--ccfm`** | **Enable CCFM constrained guidance (constraint projection)** |
 | **`--hcs_mode`** | **HCS event-selection mode: `once` (at reset) or `periodic`** |
 | **`--hcs_freq`** | **HCS re-selection frequency (steps) when `--hcs_mode=periodic`** |
