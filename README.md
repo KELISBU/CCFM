@@ -24,7 +24,7 @@ a controllable, physically plausible way.
 
 Two components work together:
 
-- **CCFM** — *Constrained flow matching*. At sampling time the adversarial
+- **CCFM** — *Collision-Constrained flow matching*. At sampling time the adversarial
   agent's trajectory is projected onto a set of hard collision constraints
   (contact `cnt`, relative heading `hdg`, severity `svt`), enabled with
   `--ccfm`.
