@@ -1,4 +1,4 @@
-# CCFM<div align="center">
+<div align="center">
 
 # CCFM: Collision-Constrained Flow Matching for Safety-Critical Scenario Generation
 
