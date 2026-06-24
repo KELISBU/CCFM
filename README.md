@@ -26,10 +26,6 @@
   adversary and **which** collision type to target, and re-selects it
   periodically during the rollout (`--hcs_mode`, `--hcs_freq`).
 
-This repository builds on
-[traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation),
-which uses [trajdata](https://github.com/NVlabs/trajdata) for data handling, and
-extends the [SAFE-SIM](https://arxiv.org/abs/2401.00391) framework.
 
 ---
 
@@ -184,3 +180,7 @@ Any use must comply with **both** licenses, including the non-commercial
 restriction.
 
 ## Citation
+This repository builds on
+[traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation),
+which uses [trajdata](https://github.com/NVlabs/trajdata) for data handling, and
+extends the [SAFE-SIM](https://arxiv.org/abs/2401.00391) framework.
