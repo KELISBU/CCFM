@@ -11,7 +11,7 @@
 [![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/Ke66668888/HMPDM-Cityscapes)
 [![License](https://img.shields.io/badge/License-MIT-green)](#license)
 
-<h3 align="center">🎉 Accepted by ECCV 2026 🎉</h3>
+<h2 align="center">🎉 Accepted by ECCV 2026 🎉</h3>
 </div>
 
 <div align="center">
