@@ -26,7 +26,7 @@ Two components work together:
 
 - **CCFM** — *Collision-Constrained flow matching*. At sampling time the adversarial
   agent's trajectory is projected onto a set of hard collision constraints
-  (contact `cnt`, relative heading `hdg`, severity `svt`), enabled with
+  (contact `cnt`, heading `hdg`, severity `svt`), enabled with
   `--ccfm`.
 - **HCS** — *Heuristic Collision Selector*. Picks **which** agent becomes the
   adversary and **which** collision type to target, and re-selects it
