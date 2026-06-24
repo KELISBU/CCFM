@@ -147,8 +147,6 @@ python scripts/run_adv_simulation.py \
 | **`--ccfm`** | **Enable CCFM constrained guidance (constraint projection)** |
 | **`--hcs_mode`** | **HCS event-selection mode: `once` (at reset) or `periodic`** |
 | **`--hcs_freq`** | **HCS re-selection frequency (steps) when `--hcs_mode=periodic`** |
-| `--hcs_collision_type` | Manually fix the collision type (`REAR_END`/`SIDE`/`CUT_IN`/`HEAD_ON`), skipping HCS |
-| `--hcs_fixed_ttc` | Force a fixed time-to-collision for all types |
 
 ### Outputs / Metrics
 
