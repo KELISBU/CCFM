@@ -15,5 +15,5 @@
 </div>
 
 <div align="center">
-  <img src="img/ccfm.png" width="90%">
+  <img src="img/CCFM.png" width="90%">
 </div>
