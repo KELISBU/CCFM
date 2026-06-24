@@ -47,7 +47,7 @@ conda create -n ccfm python=3.8
 conda activate ccfm
 
 # Install this repo
-git clone <this-repo-url>
+git clone https://github.com/KELISBU/CCFM
 cd CCFM
 pip install -e .
 
