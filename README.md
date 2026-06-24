@@ -17,12 +17,6 @@
 <div align="center">
   <img src="img/CCFM.png" width="90%">
 </div>
-CCFM generates safety-critical, closed-loop traffic scenarios on the **nuScenes**
-dataset. It drives a flow-matching reactive-agent model with **constrained
-guidance** so that a selected adversarial agent collides with the ego planner in
-a controllable, physically plausible way.
-
-Two components work together:
 
 - **CCFM** — *Collision-Constrained flow matching*. At sampling time the adversarial
   agent's trajectory is projected onto a set of hard collision constraints
