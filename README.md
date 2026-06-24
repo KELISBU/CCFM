@@ -149,7 +149,7 @@ python scripts/run_adv_simulation.py \
 | `--dataset_path` | Path to the nuScenes (trajdata) cache |
 | `--env` | Dataset environment (`nusc`) |
 | `--eval_class` | Ego planner under test (e.g. `StrivePolicy_trajdata`) |
-| `--agent_eval_class` | Reactive agent model — `CCFM` (flow matching + constraint projection); `Flowmatching` for the unconstrained baseline |
+| `--agent_eval_class` | Reactive agent model — `FM` (flow matching for the unconstrained baseline) |
 | `--ckpt_yaml` | Checkpoint config (`evaluation/CCFM.yaml`) |
 | `--scene_select_mode` | Scene subset to evaluate (e.g. `collision_all`) |
 | `--sim-steps` | Simulation length in steps (default `100`; use `200` for the 200s run) |
