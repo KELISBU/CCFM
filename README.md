@@ -82,6 +82,30 @@ CCFM is evaluated on the **nuScenes** dataset, processed through **trajdata**.
 
 ---
 
+## Configuration: Paths to Fill In
+
+This repo ships with `path/to/...` **placeholders** instead of machine-specific
+paths. Replace them before training or running the simulation:
+
+| Where | Field(s) | Set to |
+| --- | --- | --- |
+| `evaluation/CCFM.yaml`, `FlowMatching.yaml` | `planner.ckpt_dir`, `predictor.ckpt_dir` | your FM agent + unicycle-predictor checkpoint dirs |
+| `evaluation/Diffusion.yaml` | `planner.ckpt_dir`, `predictor.ckpt_dir` | diffusion baseline checkpoints (only if running the Diffusion baseline) |
+| `evaluation/Strive.yaml` | `policy.ckpt_dir` | STRIVE baseline checkpoint (only for the STRIVE baseline) |
+| `train.sh` | `DATASET`, `OUTPUT_DIR` | nuScenes (trajdata) path, training output dir |
+| `nuscene_simulation.sh` / `nuplan_simulation.sh` | `DATASET`, `OUTPUT_ROOT` | dataset path, results output dir |
+
+Optional (only if you enable the corresponding metric):
+
+| Where | Field | Set to |
+| --- | --- | --- |
+| `tbsim/evaluation/env_builders.py` | `real_histogram_file` | GT histogram `hist_stats.json` (realism-deviation metric) |
+| `tbsim/evaluation/env_builders.py` | `ckpt_root_dir` | CVAE checkpoint dir (learned/CVAE metric) |
+
+> Tip: `grep -rn "path/to/" .` lists every placeholder still needing a value.
+
+---
+
 ## 3. Training
 
 Train the flow-matching agent model (config `nusc_flowmatching`, registered in
@@ -108,6 +132,14 @@ running the simulation.
 ---
 
 ## 4. Running the Simulation
+
+> **Before running the simulation**, compute the ground-truth trajectory
+> statistics (used by the realism-deviation metric) by running
+> `scripts/calculate_real_histogram.py` on a GT rollout — it writes
+> `hist_stats.json`, which `real_histogram_file` should then point to:
+> ```bash
+> python scripts/calculate_real_histogram.py --h5_path /path/to/gt_simulation.h5 --mode tbsim
+> ```
 
 The CCFM safety-critical simulation is launched with:
 
