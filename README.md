@@ -115,11 +115,11 @@ The CCFM safety-critical simulation is launched with:
 bash nuscene_simulation.sh
 ```
 
-which runs two horizons (80s and 200s). The core command is:
+which runs two horizons (80 and 200). The core command is:
 
 ```bash
 python scripts/run_adv_simulation.py \
-  --results_root_dir=/path/to/results/CCFM_80s \
+  --results_root_dir=/path/to/results/CCFM_80 \
   --dataset_path=/path/to/nuscenes \
   --env=nusc \
   --eval_class=StrivePolicy_trajdata \
@@ -128,7 +128,7 @@ python scripts/run_adv_simulation.py \
   --render --scene_select_mode=collision_all \
   --ccfm --hcs_mode=periodic --hcs_freq=5 \
   --split_dataset
-# For a 200s horizon, add: --sim-steps=200 delete: --split_dataset
+# For a 200 horizon, add: --sim-steps=200 delete: --split_dataset
 ```
 
 ### Key Arguments
