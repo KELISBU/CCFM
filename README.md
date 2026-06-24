@@ -17,3 +17,176 @@
 <div align="center">
   <img src="img/CCFM.png" width="90%">
 </div>
+CCFM generates safety-critical, closed-loop traffic scenarios on the **nuScenes**
+dataset. It drives a flow-matching reactive-agent model with **constrained
+guidance** so that a selected adversarial agent collides with the ego planner in
+a controllable, physically plausible way.
+
+Two components work together:
+
+- **CCFM** — *Constrained flow matching*. At sampling time the adversarial
+  agent's trajectory is projected onto a set of hard collision constraints
+  (contact `cnt`, relative heading `hdg`, severity `svt`), enabled with
+  `--ccfm`.
+- **HCS** — *Hard-Constraint Selection*. Picks **which** agent becomes the
+  adversary and **which** collision type to target, and re-selects it
+  periodically during the rollout (`--hcs_mode`, `--hcs_freq`).
+
+This repository builds on
+[traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation),
+which uses [trajdata](https://github.com/NVlabs/trajdata) for data handling, and
+extends the [SAFE-SIM](https://arxiv.org/abs/2401.00391) framework.
+
+---
+
+## 1. Environment Setup
+
+```bash
+# Conda environment
+conda create -n ccfm python=3.8
+conda activate ccfm
+
+# Install this repo
+git clone <this-repo-url>
+cd CCFM
+pip install -e .
+
+# Install the modified trajdata
+cd ..
+git clone https://github.com/jxmmy7777/trajdata.git
+cd trajdata
+pip install -e .
+```
+
+You may need to install PyTorch manually to match your CUDA/CPU setup:
+<https://pytorch.org/get-started/>. A full pinned environment is also provided in
+[`environment.yml`](environment.yml) (`conda env create -f environment.yml`).
+
+---
+
+## 2. Data Preparation
+
+CCFM is evaluated on the **nuScenes** dataset, processed through **trajdata**.
+
+1. **Download** nuScenes following the
+   [nuScenes devkit setup guide](https://github.com/nutonomy/nuscenes-devkit#nuscenes-setup).
+
+2. **Organize** the dataset:
+
+   ```
+   /path/to/nuScenes/
+   ├── maps/
+   ├── samples/
+   ├── sweeps/
+   ├── v1.0-mini/
+   ├── v1.0-test/
+   └── v1.0-trainval/
+   ```
+
+3. **Preprocess / cache** the data and maps with trajdata:
+
+   ```bash
+   cd trajdata
+   python examples/preprocess_data.py
+   ```
+
+---
+
+## 3. Training
+
+Train the flow-matching agent model (config `nusc_flowmatching`, registered in
+[`tbsim/configs/registry.py`](tbsim/configs/registry.py)):
+
+```bash
+bash train.sh
+```
+
+`train.sh` runs:
+
+```bash
+python scripts/train.py \
+  --config_name nusc_flowmatching \
+  --dataset_path /path/to/nuScenes \
+  --output_dir /path/to/outputs \
+  --name ccfm_flowmatching
+```
+
+Checkpoints, TensorBoard logs, and visualizations are written under
+`--output_dir`. Point `evaluation/CCFM.yaml` at the resulting checkpoint before
+running the simulation.
+
+---
+
+## 4. Running the Simulation
+
+The CCFM safety-critical simulation is launched with:
+
+```bash
+bash nuscene_simulation.sh
+```
+
+which runs two horizons (80s and 200s). The core command is:
+
+```bash
+python scripts/run_adv_simulation.py \
+  --results_root_dir=/path/to/results/CCFM_80s \
+  --dataset_path=/path/to/nuscenes \
+  --env=nusc \
+  --eval_class=StrivePolicy_trajdata \
+  --agent_eval_class=CCFM \
+  --ckpt_yaml=evaluation/CCFM.yaml \
+  --render --scene_select_mode=collision_all \
+  --ccfm --hcs_mode=periodic --hcs_freq=5 \
+  --split_dataset
+# For a 200s horizon, add:  --sim-steps=200
+```
+
+### Key Arguments
+
+| Argument | Description |
+| --- | --- |
+| `--results_root_dir` | Directory to store simulation results |
+| `--dataset_path` | Path to the nuScenes (trajdata) cache |
+| `--env` | Dataset environment (`nusc`) |
+| `--eval_class` | Ego planner under test (e.g. `StrivePolicy_trajdata`) |
+| `--agent_eval_class` | Reactive agent model — `CCFM` (flow matching + constraint projection); `Flowmatching` for the unconstrained baseline |
+| `--ckpt_yaml` | Checkpoint config (`evaluation/CCFM.yaml`) |
+| `--scene_select_mode` | Scene subset to evaluate (e.g. `collision_all`) |
+| `--sim-steps` | Simulation length in steps (default `100`; use `200` for the 200s run) |
+| `--split_dataset` | Split scenes across the run |
+| **`--ccfm`** | **Enable CCFM constrained guidance (constraint projection)** |
+| **`--hcs_mode`** | **HCS event-selection mode: `once` (at reset) or `periodic`** |
+| **`--hcs_freq`** | **HCS re-selection frequency (steps) when `--hcs_mode=periodic`** |
+| `--hcs_collision_type` | Manually fix the collision type (`REAR_END`/`SIDE`/`CUT_IN`/`HEAD_ON`), skipping HCS |
+| `--hcs_fixed_ttc` | Force a fixed time-to-collision for all types |
+
+### Outputs / Metrics
+
+Simulation logs per-scene metrics (see
+[`tbsim/evaluation/env_builders.py`](tbsim/evaluation/env_builders.py)),
+including: ego collision rate, collision region (FRONT/REAR/SIDE), ego and
+adversary off-road rates, collision relative speed, collision relative heading,
+and collision type-match.
+
+### Visualization
+
+```bash
+python scripts/visualize.py \
+  --output_dir=$OUTPUT_PATH --dataset_path=$DATA_PATH --env=nusc --hdf5_path=$HDF5_PATH
+```
+
+---
+
+## License & Attribution
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0
+International License (CC BY-NC 4.0).
+
+This repository includes components derived from
+[NVIDIA's Traffic Behavior Simulation repository](https://github.com/NVlabs/traffic-behavior-simulation),
+licensed under the
+[NVIDIA Source Code License - NC](https://github.com/NVlabs/traffic-behavior-simulation/blob/main/LICENSE).
+Any use must comply with **both** licenses, including the non-commercial
+restriction.
+
+## Citation
