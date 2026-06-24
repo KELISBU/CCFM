@@ -133,13 +133,22 @@ running the simulation.
 
 ## 4. Running the Simulation
 
-> **Before running the simulation**, compute the ground-truth trajectory
-> statistics (used by the realism-deviation metric) by running
-> `scripts/calculate_real_histogram.py` on a GT rollout — it writes
-> `hist_stats.json`, which `real_histogram_file` should then point to:
+> **Before running the simulation**, generate the ground-truth trajectory
+> statistics used by the realism-deviation metric (two steps):
 > ```bash
-> python scripts/calculate_real_histogram.py --h5_path /path/to/gt_simulation.h5 --mode tbsim
+> # Step 1: run a GroundTruth rollout to produce the GT h5 (data.hdf5)
+> python scripts/run_adv_simulation.py \
+>   --eval_class=GroundTruth \
+>   --env=nusc --dataset_path=/path/to/nuscenes \
+>   --results_root_dir=path/to/results/GT_baseline \
+>   --scene_select_mode=collision_all --sim-steps=200
+>
+> # Step 2: compute hist_stats.json from that h5 (written next to the h5)
+> python scripts/calculate_real_histogram.py \
+>   --h5_path path/to/results/GT_baseline/data.hdf5 --mode tbsim
 > ```
+> Then point `real_histogram_file` (in `tbsim/evaluation/env_builders.py`) at the
+> resulting `hist_stats.json`.
 
 The CCFM safety-critical simulation is launched with:
 
