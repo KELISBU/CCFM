@@ -203,6 +203,7 @@ Any use must comply with **both** licenses, including the non-commercial
 restriction.
 
 ## Citation
+## Acknowledgement
 This repository builds on
 [traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation),
 which uses [trajdata](https://github.com/NVlabs/trajdata) for data handling, and
