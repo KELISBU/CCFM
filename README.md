@@ -8,7 +8,7 @@
 <sup>2</sup> Department of Civil Engineering, Pennsylvania State University
 
 [![preprint](https://img.shields.io/badge/Paper-PDF-blue)](https://arxiv.org/abs/XXXX.XXXXX)
-[![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/Ke66668888/HMPDM-Cityscapes)
+[![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/Ke66668888/CCFM/tree/main)
 [![License](https://img.shields.io/badge/License-MIT-green)](#license)
 
 <h2 align="center">🎉 Accepted by ECCV 2026 🎉</h3>
