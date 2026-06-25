@@ -43,7 +43,7 @@ pip install -e .
 
 # Install the modified trajdata
 cd ..
-git clone https://github.com/jxmmy7777/trajdata.git
+git clone https://github.com/KELISBU/trajdata
 cd trajdata
 pip install -e .
 ```
