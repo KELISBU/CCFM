@@ -1,6 +1,0 @@
-planner:
-  ckpt_dir: path/to/diffusion_checkpoint       # diffusion agent checkpoint dir
-  ckpt_key: 70000
-predictor:
-  ckpt_dir: path/to/predictor_checkpoint       # unicycle predictor checkpoint dir
-  ckpt_key: 94000
