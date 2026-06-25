@@ -1,3 +1,0 @@
-policy:
-  ckpt_dir: path/to/strive_checkpoint          # STRIVE planner checkpoint dir
-  ckpt_key: iter6000_ep4_valLoss0.07
