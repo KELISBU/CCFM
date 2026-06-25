@@ -48,7 +48,7 @@ cd trajdata
 pip install -e .
 ```
 
-You may need to install PyTorch manually to match your CUDA/CPU setup:
+You may need to install PyTorch manually to match your CUDA setup:
 <https://pytorch.org/get-started/>. A full pinned environment is also provided in
 [`environment.yml`](environment.yml) (`conda env create -f environment.yml`).
 
