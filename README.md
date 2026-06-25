@@ -122,7 +122,7 @@ running the simulation.
 ---
 
 ## 4. Running the Simulation
-
+>Pre-trained checkpoints on nuScene are released on the HuggingFace Hub:[Ke66668888/CCFM](https://huggingface.co/Ke66668888/CCFM/tree/main)
 > **Before running the simulation**, generate the ground-truth trajectory
 > statistics used by the realism-deviation metric (two steps):
 > ```bash
