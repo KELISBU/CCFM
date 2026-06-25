@@ -18,7 +18,7 @@
   <img src="img/CCFM.png" width="90%">
 </div>
 
-- **CCFM** — *Collision-Constrained flow matching*. At sampling time the adversarial
+- **CCFM** — *Collision-Constrained Flow Matching*. At sampling time the adversarial
   agent's trajectory is projected onto a set of hard collision constraints
   (contact `cnt`, heading `hdg`, severity `svt`), enabled with
   `--ccfm`.
