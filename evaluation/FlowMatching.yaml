@@ -1,3 +1,0 @@
-planner:
-  ckpt_dir: path/to/flowmatching_checkpoint   # FM agent checkpoint dir
-  ckpt_key: 20000
