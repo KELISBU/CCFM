@@ -18,6 +18,7 @@ pyemd
 zarr>=2.11.0
 tqdm>=4.62
 openpyxl
+PyYAML
 # Visualization
 matplotlib>=3.5
 seaborn>=0.12
@@ -25,6 +26,7 @@ bokeh>=3.0.3
 kornia>=0.6.4
 imageio-ffmpeg
 imageio
+Pillow  
 geopandas>=0.13.2
 scipy>=1.9.0
 opencv-python>=4.5.0
