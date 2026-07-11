@@ -204,6 +204,14 @@ Any use must comply with **both** licenses, including the non-commercial
 restriction.
 
 ## Citation
+```bibtex
+@article{li2026ccfm,
+  title={CCFM: Collision-Constrained Flow Matching for Safety-Critical Scenario Generation},
+  author={Li, Ke and Liang, Kaidi and Ding, Yuxin and Biswas, Debojyoti and Hu, Xianbiao and Qin, Ruwen},
+  journal={arXiv preprint arXiv:2607.04451},
+  year={2026}
+}
+```
 ## Acknowledgement
 This repository builds on
 [traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation),
