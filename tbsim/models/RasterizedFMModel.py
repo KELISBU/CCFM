@@ -222,30 +222,14 @@ class RasterizedFMModel(nn.Module):
         all_steps = [] if return_all_steps else None
 
         for step in range(n_steps):
-            # ---- Second-order Heun (RK2) integration ----
+        
             t0_scalar = step / float(n_steps)
             t1_scalar = min((step + 1) / float(n_steps), 1.0)
 
             t0 = torch.full((actions.shape[0],), t0_scalar, device=device)
-            t1 = torch.full((actions.shape[0],), t1_scalar, device=device)
 
-            k1 = wrapped_velocity(actions, t0)           # slope at start
-            actions_pred = actions + dt * k1             # Euler prediction
-            k2 = wrapped_velocity(actions_pred, t1)      # slope at end
-            actions = actions + dt * 0.5 * (k1 + k2)    # trapezoidal correction
-
-            # # DEBUG: print ODE integration diagnostics at a few steps
-            # if step in (0, n_steps // 2, n_steps - 1):
-            #     with torch.no_grad():
-            #         act_phys = self.denormalize_actions(actions)
-            #         print(f"  [ODE step {step}/{n_steps}] t={t0_scalar:.3f} "
-            #               f"k1_norm={k1.abs().mean().item():.4f} "
-            #               f"k2_norm={k2.abs().mean().item():.4f} "
-            #               f"actions_norm(mean_abs)={actions.abs().mean().item():.4f} "
-            #               f"actions_phys(mean_abs)={act_phys.abs().mean().item():.4f} "
-            #               f"accel_phys={act_phys[...,0].mean().item():.4f} "
-            #               f"yawrate_phys={act_phys[...,1].mean().item():.4f}")
-            # ─────────────────────────────────────────────────────────────────
+            k1 = wrapped_velocity(actions, t0)           
+            actions = actions + dt * k1                  
 
             # Optional: per-step guidance hook
             if guide_sample_fn is not None:
