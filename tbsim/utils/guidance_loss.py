@@ -1635,7 +1635,7 @@ class LaneFollowingLoss(GuidanceLoss):
 
         return loss
 
-# GPT4
+
 class KeepDistanceLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should always keep within min_distance and max_distance from vehicle with index ref_ind.
@@ -1695,7 +1695,7 @@ class KeepDistanceLoss(GuidanceLoss):
 
         return distance_loss
 
-# GPT4
+
 class CollisionLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should collide with vehicle with index ref_ind.
@@ -1799,7 +1799,7 @@ class KeepDistanceLoss2(GuidanceLoss):
         return dist_loss
 
 
-# GPT4
+
 class ChangeToLeftLaneLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should change to its left lane and follow it.
@@ -1848,7 +1848,7 @@ class ChangeToLeftLaneLoss(GuidanceLoss):
 
         return loss
 
-# GPT4
+
 class FrontCollisionLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should collide with the front side of vehicle with index ref_ind.
@@ -1903,7 +1903,7 @@ class FrontCollisionLoss(GuidanceLoss):
 
         return loss
 
-# GPT4
+
 class CollideLeftSideLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should collide the left side of vehicle with index ref_ind.
@@ -2018,7 +2018,7 @@ class FollowLaneLoss(GuidanceLoss):
 
         return pos_loss
 
-# GPT3.5
+
 class StayAwayLoss(GuidanceLoss):
     '''
     Vehicle with index target_ind should always stay away from vehicle with index ref_ind.
