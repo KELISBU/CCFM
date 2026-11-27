@@ -206,12 +206,18 @@ restriction.
 
 ## Citation
 ```bibtex
-@article{li2026ccfm,
-  title={CCFM: Collision-Constrained Flow Matching for Safety-Critical Scenario Generation},
-  author={Li, Ke and Liang, Kaidi and Ding, Yuxin and Biswas, Debojyoti and Hu, Xianbiao and Qin, Ruwen},
-  journal={arXiv preprint arXiv:2607.04451},
-  year={2026}
+@InProceedings{10.1007/978-3-032-37490-5_5,
+author="Li, Ke and Liang, Kaidi and Ding, Yuxin and Biswas, Debojyoti and Hu, Xianbiao and Qin, Ruwen",
+title="CCFM: Collision-Constrained Flow Matching for Safety-Critical Scenario Generation",
+booktitle="Computer Vision -- ECCV 2026",
+year="2026",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="86--103",
+isbn="978-3-032-37490-5"
 }
+
+
 ```
 ## Acknowledgement
 This repository builds on
